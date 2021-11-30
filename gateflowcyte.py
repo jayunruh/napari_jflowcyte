@@ -94,7 +94,7 @@ def get2DHistBins(binSize,limits,logs,logxmin=1.0,logymin=1.0):
     histbins.append(tempybins)
     return histbins
     
-def drawHist(df,xcol,ycol,limits,logs,binSize=4,figsize=(4,4),multipler=1.0):
+def drawHist(df,xcol,ycol,limits,logs,binSize=4,figsize=(4,4),multiplier=1.0):
     fig=Figure(figsize=figsize,dpi=300)
     #canvas=FigureCanvasAgg(fig)
     histbins=get2DHistBins(binSize,limits,logs)
@@ -121,7 +121,7 @@ def drawHist(df,xcol,ycol,limits,logs,binSize=4,figsize=(4,4),multipler=1.0):
     return fig,figimg
     
 def addNapariHist(df,xcol,ycol,limits,logs,viewer=None,binSize=4,multiplier=1.0):
-    fig,figimg=drawHist(df,xcol,ycol,limits,logs,binSize,multiplier)
+    fig,figimg=drawHist(df,xcol,ycol,limits,logs,binSize,multiplier=multiplier)
     figname=ycol+' vs '+xcol
     if(viewer is None):
         viewer=napari.Viewer()
@@ -147,7 +147,7 @@ def overlayImageGate(figimg,gate):
     return fig,np.asarray(canvas.buffer_rgba())
     
 def drawHistGate(df,xcol,ycol,limits,logs,gate,binSize=4,multiplier=1.0):
-    fig,figimg=drawHist(df,xcol,ycol,limits,logs,binSize,muliplier)
+    fig,figimg=drawHist(df,xcol,ycol,limits,logs,binSize,multiplier=muliplier)
     return overlayImageGate(figimg,gate)
 
 def getPlotCoords(xpts,ypts,limits,logs,margins=[180,180],psizes=[840,840]):
